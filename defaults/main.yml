@@ -1,0 +1,4 @@
+---
+ISVersion: "2019"
+ISProductFolder: C:\Program Files (x86)\InstallShield\{{ ISVersion }}
+ISDbgFolder: C:\ISDbg\{{ ISVersion }}

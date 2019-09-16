@@ -1,0 +1,54 @@
+---
+- name: Copy ISDbg related files
+  block:
+  - name: Create destination directory
+    win_file:
+      path: "{{ ISDbgFolder }}"
+      state: directory
+
+  - name: Copy ISDbg.exe
+    win_copy:
+      src: "{{ ISProductFolder }}/System/ISDbg.exe"
+      dest: "{{ ISDbgFolder }}/ISDbg.exe"
+
+  - name: Copy SciLexer.dll
+    win_copy:
+      src: "{{ ISProductFolder }}/System/SciLexer.dll"
+      dest: "{{ ISDbgFolder }}/SciLexer.dll"
+    when: ISVersion >= "2012"
+
+  - name: Copy ISDbg.chm (English)
+    win_copy:
+      src: "{{ ISProductFolder }}/Program/0409/ISdbg.chm"
+      dest: "{{ ISDbgFolder }}/ISdbg.chm"
+    failed_when: no
+
+  - name: Copy ISDbg.chm (Japanese)
+    win_copy:
+      src: "{{ ISProductFolder }}/Program/0411/ISdbg.chm"
+      dest: "{{ ISDbgFolder }}/ISdbg.chm"
+    failed_when: no
+
+- name: Register ISDbg.exe
+  win_command: ISDbg.exe /REGSERVER
+  args:
+    chdir: "{{ ISDbgFolder }}"
+
+- name: Configure ISDbg.exe dependency
+  block:
+  - name: Check VC 11 x86 Installation Status
+    win_reg_stat:
+      path: HKLM:\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\VC\Runtimes\x86
+      name: Installed
+    register: vc11_x86
+  - name: Download Visual C++ Redistributable for Visual Studio 2012 Update 4 x86
+    win_get_url:
+      url: https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe
+      dest: "{{ ISDbgFolder }}/vcredist_x86.exe"
+    when: not vc11_x86.exists
+  - name: Install Visual C++ Redistributable for Visual Studio 2012 Update 4 x86
+    win_command: vcredist_x86.exe /passive /norestart
+    args:
+      chdir: "{{ ISDbgFolder }}"
+    when: not vc11_x86.exists
+  when: ISVersion >= "2016"

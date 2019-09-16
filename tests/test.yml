@@ -1,0 +1,10 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: isdev
+  gather_facts: no
+  roles:
+    - name: ../..
+      ISVersion: "2019"
+      ISProductFolder: ~/Downloads
+      #ISProductFolder: C:\Program Files (x86)\InstallShield\2019
+      #ISDbgFolder: C:\ISDbg\{{ ISVersion }}
