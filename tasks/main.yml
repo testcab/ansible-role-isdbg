@@ -6,28 +6,13 @@
       path: "{{ ISDbgFolder }}"
       state: directory
 
-  - name: Copy ISDbg.exe
-    win_copy:
-      src: "{{ ISProductFolder }}/System/ISDbg.exe"
-      dest: "{{ ISDbgFolder }}/ISDbg.exe"
+  - name: Copy files from ISProductFolder {{ ISProductFolder }}
+    import_tasks: copy-from-folder.yml
+    when: ISDbgZip is not defined
 
-  - name: Copy SciLexer.dll
-    win_copy:
-      src: "{{ ISProductFolder }}/System/SciLexer.dll"
-      dest: "{{ ISDbgFolder }}/SciLexer.dll"
-    when: ISVersion >= "2012"
-
-  - name: Copy ISDbg.chm (English)
-    win_copy:
-      src: "{{ ISProductFolder }}/Program/0409/ISdbg.chm"
-      dest: "{{ ISDbgFolder }}/ISdbg.chm"
-    failed_when: no
-
-  - name: Copy ISDbg.chm (Japanese)
-    win_copy:
-      src: "{{ ISProductFolder }}/Program/0411/ISdbg.chm"
-      dest: "{{ ISDbgFolder }}/ISdbg.chm"
-    failed_when: no
+  - name: Copy files from ISDbgZip {{ ISDbgZip }}
+    import_tasks: copy-from-zip.yml
+    when: ISDbgZip is defined
 
 - name: Register ISDbg.exe
   win_command: ISDbg.exe /REGSERVER

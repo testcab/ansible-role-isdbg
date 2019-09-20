@@ -7,4 +7,6 @@
       ISVersion: "2019"
       ISProductFolder: ~/Downloads
       #ISProductFolder: C:\Program Files (x86)\InstallShield\2019
+      #ISDbgZip: C:\Downloads\isdbg2019.zip
+      #ISDbgZip: "https://example.com/isdbg2019.zip"
       #ISDbgFolder: C:\ISDbg\{{ ISVersion }}

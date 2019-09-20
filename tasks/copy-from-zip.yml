@@ -1,0 +1,18 @@
+---
+- name: Copy {{ ISDbgZip }}
+  win_copy:
+    src: "{{ ISDbgZip }}"
+    dest: "{{ ISDbgFolder }}/"
+  when: not ISDbgHttpZip
+
+- name: Download {{ ISDbgZip }}
+  win_get_url:
+    url: "{{ ISDbgZip }}"
+    dest: "{{ ISDbgFolder }}"
+  when: ISDbgHttpZip
+
+- name: Unzip {{ ISDbgZipName }}
+  win_unzip:
+    src: "{{ ISDbgFolder }}/{{ ISDbgZipName }}"
+    dest: "{{ ISDbgFolder }}"
+    creates: "{{ ISDbgFolder }}/ISDbg.exe"

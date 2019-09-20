@@ -1,2 +1,5 @@
 ---
-# vars file for isdbg
+ISDbgHttpZip: "{{ ISDbgZip.startswith('http') }}"
+# Get basename for local or HTTP zip;
+# Remove search part of URL for HTTP zip.
+ISDbgZipName: "{{ ISDbgZip | win_basename | regex_replace('\\?.*', '') }}"
