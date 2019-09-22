@@ -8,7 +8,7 @@
 
   - name: Copy files from ISProductFolder {{ ISProductFolder }}
     import_tasks: copy-from-folder.yml
-    when: ISDbgZip is not defined
+    when: ISProductFolder is defined
 
   - name: Copy files from ISDbgZip {{ ISDbgZip }}
     import_tasks: copy-from-zip.yml
