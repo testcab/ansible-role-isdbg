@@ -22,12 +22,12 @@ You need to have one of the following requirements met as this ansible role does
 Role Variables
 --------------
 
-Variable        | Default         | Comment
---------------- | --------------- | -------
-ISVersion       | `2019`          | The InstallShield Release
-ISProductFolder | (undefined)     | Source folder to search on control node;  <br>One of `ISProductFolder` and `ISDbgZip` must be specified.
-ISDbgZip        | (undefined)     | Source zip which contains required files; <br>One of `ISProductFolder` and `ISDbgZip` must be specified.
-ISDbgFolder     | `C:\ISDbg\2019` | Destination Folder to Install on Remote Machine
+Variable        | Default                    | Comment
+--------------- | -------------------------- | -------
+ISVersion       | (undefined)                | The InstallShield Release
+ISProductFolder | (undefined)                | Source folder to search on control node;  <br>One of `ISProductFolder` and `ISDbgZip` must be specified.
+ISDbgZip        | (undefined)                | Source zip which contains required files; <br>One of `ISProductFolder` and `ISDbgZip` must be specified.
+ISDbgFolder     | `C:\ISDbg\{{ ISVersion }}` | Destination Folder to Install on Remote Machine
 
 Dependencies
 ------------

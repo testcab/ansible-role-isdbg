@@ -26,14 +26,18 @@
       path: HKLM:\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\VC\Runtimes\x86
       name: Installed
     register: vc11_x86
+
   - name: Download Visual C++ Redistributable for Visual Studio 2012 Update 4 x86
     win_get_url:
       url: https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe
       dest: "{{ ISDbgFolder }}/vcredist_x86.exe"
     when: not vc11_x86.exists
+
   - name: Install Visual C++ Redistributable for Visual Studio 2012 Update 4 x86
     win_command: vcredist_x86.exe /passive /norestart
     args:
       chdir: "{{ ISDbgFolder }}"
     when: not vc11_x86.exists
-  when: ISVersion >= "2016"
+  when: >
+    ISVersion is not defined or
+    ISVersion >= "2016"
