@@ -4,5 +4,7 @@
 ansible_user=user
 ansible_password=password
 ansible_connection=winrm
+#ansible_port=5985 # HTTP
+ansible_port=5986 # HTTPS
 ansible_winrm_transport=ntlm
 ansible_winrm_server_cert_validation=ignore
