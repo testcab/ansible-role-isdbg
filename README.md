@@ -47,7 +47,7 @@ Example Playbook
       roles:
         - name: pallxk/isdbg
           ISVersion: "2019"
-          ISProductFolder: ~/InstallShield/2019
+          ISProductFolder: ~/Downloads/ISDbg/2019
           ISDbgFolder: C:\ISDbg\{{ ISVersion }}
     ```
 
@@ -75,7 +75,7 @@ Example Playbook
       roles:
         - name: pallxk/isdbg
           ISVersion: "2019"
-          ISDbgZip: Downloads/isdbg2019.zip
+          ISDbgZip: ~/Downloads/isdbg2019.zip
           ISDbgFolder: C:\ISDbg\{{ ISVersion }}
     ```
 

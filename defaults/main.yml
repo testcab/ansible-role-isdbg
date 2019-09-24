@@ -1,7 +1,7 @@
 ---
 #ISVersion: "2019"
-#ISProductFolder: Downloads/ISDbg/{{ ISVersion }}
+#ISProductFolder: ~/Downloads/ISDbg/{{ ISVersion }}
 #ISProductFolder: /cygdrive/c/Program Files (x86)/InstallShield/{{ ISVersion }}
-#ISDbgZip: Downloads/isdbg2019.zip
-#ISDbgZip: "https://example.com/isdbg2019.zip"
+#ISDbgZip: ~/Downloads/isdbg{{ ISVersion }}.zip
+#ISDbgZip: "https://example.com/isdbg{{ ISVersion }}.zip"
 ISDbgFolder: C:\ISDbg\{{ ISVersion if ISVersion is defined else '' }}

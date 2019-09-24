@@ -4,9 +4,9 @@
   gather_facts: no
   roles:
     - name: ../..
-      ISVersion: "2019"
-      ISProductFolder: ~/Downloads
-      #ISProductFolder: C:\Program Files (x86)\InstallShield\2019
-      #ISDbgZip: C:\Downloads\isdbg2019.zip
-      #ISDbgZip: "https://example.com/isdbg2019.zip"
+      #ISVersion: "2019"
+      #ISProductFolder: ~/Downloads/ISDbg/{{ ISVersion }}
+      #ISProductFolder: /cygdrive/c/Program Files (x86)/InstallShield/{{ ISVersion }}
+      #ISDbgZip: ~/Downloads/isdbg{{ ISVersion }}.zip
+      #ISDbgZip: "https://example.com/isdbg{{ ISVersion }}.zip"
       #ISDbgFolder: C:\ISDbg\{{ ISVersion }}
